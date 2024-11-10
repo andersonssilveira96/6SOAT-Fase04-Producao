@@ -13,11 +13,7 @@ namespace Infra.Data.Config
             builder.Property(x => x.Id)
                    .UseIdentityColumn();
 
-            builder.Property(x => x.ValorTotal).IsRequired();
-
             builder.Property(x => x.Status).IsRequired();
-
-            builder.HasOne(x => x.Cliente);
         }
     }
 }

@@ -37,8 +37,8 @@ namespace Infra.Data.Repositories
             return pedido;
         }
 
-        public async Task<List<Pedido>> ListarPedidos() => await _context.Pedido.Include(x => x.Cliente).Include(x=> x.Produtos).ThenInclude(x => x.Produto).ToListAsync();
-        public async Task<Pedido> ObterPorId(long id) => await _context.Pedido.Include(x => x.Cliente).Include(x => x.Produtos).ThenInclude(x => x.Produto).FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<List<Pedido>> ListarPedidos() => await _context.Pedido.ToListAsync();
+        public async Task<Pedido> ObterPorId(long id) => await _context.Pedido.FirstOrDefaultAsync(x => x.Id == id);
 
     }
 }

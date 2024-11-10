@@ -25,7 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Infra.Data\Infra.Data.csproj" />
-    <ProjectReference Include="..\Infra.Gateway\Infra.Gateway.csproj" />
   </ItemGroup>
 
 </Project>
