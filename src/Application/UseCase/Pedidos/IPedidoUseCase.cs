@@ -6,7 +6,7 @@ namespace Application.UseCase.Pedidos
 {
     public interface IPedidoUseCase
     {
-        Task<Result<object>> Inserir(CadastrarPedidoDto pedidoDto);       
+        Task<Result<object>> Inserir(PedidoDto pedidoDto);       
         Task<PedidoDto> AtualizarStatus(long id, int status);
         Task<IEnumerable<PedidoDto>> Listar();
     }

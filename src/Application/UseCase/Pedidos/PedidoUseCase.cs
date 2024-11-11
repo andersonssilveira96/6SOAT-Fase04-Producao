@@ -3,6 +3,7 @@ using Application.DTOs.Pedido;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Enums;
+using Domain.Producer;
 using Domain.Repositories;
 
 namespace Application.UseCase.Pedidos
@@ -11,10 +12,12 @@ namespace Application.UseCase.Pedidos
     {
         private readonly IPedidoRepository _repository;
         private readonly IMapper _mapper;
-        public PedidoUseCase(IPedidoRepository repository,IMapper mapper)
+        private readonly IMessageBrokerProducer _messageBrokerProducer;
+        public PedidoUseCase(IPedidoRepository repository, IMapper mapper, IMessageBrokerProducer messageBrokerProducer)
         {
             _repository = repository;         
             _mapper = mapper;
+            _messageBrokerProducer = messageBrokerProducer;
         }
         public async Task<PedidoDto> AtualizarStatus(long id, int status)
         {
@@ -31,12 +34,14 @@ namespace Application.UseCase.Pedidos
 
             pedido.AtualizarStatus((StatusEnum)status);
 
+            await _messageBrokerProducer.SendMessageAsync(pedido);
+
             return _mapper.Map<PedidoDto>(await _repository.Atualizar(pedido));
         }
 
-        public async Task<Result<object>> Inserir(CadastrarPedidoDto pedidoDto)
+        public async Task<Result<object>> Inserir(PedidoDto pedidoDto)
         {           
-            var pedido = new Pedido();
+            var pedido = new Pedido(pedidoDto.Id, StatusEnum.Recebido);
             await _repository.Inserir(pedido);     
    
             return new Result<object> { Mensagem = "Pedido cadastrado com sucesso" };
