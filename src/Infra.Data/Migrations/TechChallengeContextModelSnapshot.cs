@@ -4,12 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using System.Diagnostics.CodeAnalysis;
 
 #nullable disable
 
 namespace Infra.Data.Migrations
 {
     [DbContext(typeof(TechChallengeContext))]
+    [ExcludeFromCodeCoverage]
+
     partial class TechChallengeContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
