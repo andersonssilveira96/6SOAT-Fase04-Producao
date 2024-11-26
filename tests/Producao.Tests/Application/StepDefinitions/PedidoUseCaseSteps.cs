@@ -67,7 +67,7 @@ namespace Producao.Tests.Application.StepDefinitions
             Assert.Equal(status.ToLower(), _pedidoDto.Status.ToLower());
         }
 
-        [Then(@"uma exceçãoo deve ser lançada com a mensagem ""(.*)""")]
+        [Then(@"uma exceção deve ser lançada com a mensagem ""(.*)""")]
         public void EntaoUmaExcecaoDeveSerLancadaComAMensagem(string mensagem)
         {
             Assert.NotNull(_exception);
