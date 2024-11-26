@@ -69,7 +69,7 @@ jobs:
         working-directory: .
         run: |
           TAG=$(date +%Y%m%d%H%M%S)
-          docker build -t ${{secrets.DOCKER_USER}}/techchallenge:latest -t ${{secrets.DOCKER_USER}}/techchallenge-producao:$TAG . --no-cache
+          docker build -t ${{secrets.DOCKER_USER}}/techchallenge-producao:latest -t ${{secrets.DOCKER_USER}}/techchallenge-producao:$TAG . --no-cache
           docker push ${{secrets.DOCKER_USER}}/techchallenge-producao:$TAG
           docker push ${{secrets.DOCKER_USER}}/techchallenge-producao:latest    
           
