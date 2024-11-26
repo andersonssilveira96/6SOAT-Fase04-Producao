@@ -1,4 +1,4 @@
-using Application.DTOs;
+ï»¿using Application.DTOs;
 using Application.DTOs.Pedido;
 using Application.UseCase.Pedidos;
 using AutoMapper;
@@ -67,14 +67,18 @@ namespace Producao.Tests.Application.StepDefinitions
             Assert.Equal(status.ToLower(), _pedidoDto.Status.ToLower());
         }
 
-        [Then(@"uma exceção deve ser lançada com a mensagem ""(.*)""")]
+        [Then(@"uma exceÃ§Ã£o deve ser lanÃ§ada com a mensagem ""(.*)""")]
+        [Then(@"uma exceï¿½ï¿½o deve ser lanï¿½ada com a mensagem ""(.*)""")]
+
         public void EntaoUmaExcecaoDeveSerLancadaComAMensagem(string mensagem)
         {
             Assert.NotNull(_exception);
             Assert.Equal(mensagem, _exception.Message);
         }
 
-        [Given(@"um pedido com ID ""(.*)"" está pronto para ser cadastrado")]
+        [Given(@"um pedido com ID ""(.*)"" estÃ¡ pronto para ser cadastrado")]
+        [Given(@"um pedido com ID ""(.*)"" estï¿½ pronto para ser cadastrado")]
+
         public void DadoUmPedidoComIDEstaProntoParaSerCadastrado(long id)
         {
             _pedidoDto = new PedidoDto { Id = id };
@@ -122,15 +126,15 @@ namespace Producao.Tests.Application.StepDefinitions
         {
             try
             {
-                // Converter o status para enumeração
+                // Converter o status para enumeraÃ§Ã£o
                 var novoStatus = (int)Enum.Parse<StatusEnum>(status);
 
-                // Executar o método de atualização
+                // Executar o mÃ©todo de atualizaÃ§Ã£o
                 _pedidoDto = await _pedidoUseCase.AtualizarStatus(_pedido.Id, novoStatus);
             }
             catch (Exception ex)
             {
-                // Capturar a exceção para validação posterior
+                // Capturar a exceÃ§Ã£o para validaÃ§Ã£o posterior
                 _exception = ex;
             }
         }
