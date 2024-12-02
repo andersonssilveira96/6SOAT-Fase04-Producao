@@ -1,4 +1,5 @@
 ﻿using Domain.Enums;
+using System.Text.Json.Serialization;
 
 namespace Domain.Entities
 {
@@ -10,7 +11,9 @@ namespace Domain.Entities
             Status = status;
         }
         public void AtualizarStatus(StatusEnum status) => Status = status;
-        public long Id { get; private set; }    
+        public long Id { get; private set; }
+
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public StatusEnum Status { get; private set; }
     }
 }
