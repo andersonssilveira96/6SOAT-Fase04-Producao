@@ -3,6 +3,7 @@ using RabbitMQ.Client;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text;
+using Application.DTOs.Pedido;
 
 namespace Infra.MessageBroker
 {
@@ -24,10 +25,14 @@ namespace Infra.MessageBroker
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = ReferenceHandler.IgnoreCycles,
-                WriteIndented = true
+                WriteIndented = 
+                true
             };
 
             string json = JsonSerializer.Serialize(message, options);
+
+            Console.WriteLine($"Pedido: {json}");
+
             var body = Encoding.UTF8.GetBytes(json);
 
             await channel.BasicPublishAsync(exchange: "", routingKey: "pedidos-atualizados", body: body);
