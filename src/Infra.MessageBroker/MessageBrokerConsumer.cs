@@ -42,7 +42,7 @@ namespace Infra.MessageBroker
                 await _pedidoUseCase.Inserir(pedido);
             };
 
-            await _channel.BasicConsumeAsync(queue: "pedidos-pagos", autoAck: true, consumer: consumer);
+            await _channel.BasicConsumeAsync(queue: "pedidos-pagos", autoAck: false, consumer: consumer);
         }
 
         public void Dispose()

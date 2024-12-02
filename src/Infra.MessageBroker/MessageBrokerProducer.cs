@@ -25,9 +25,10 @@ namespace Infra.MessageBroker
             JsonSerializerOptions options = new()
             {
                 ReferenceHandler = ReferenceHandler.IgnoreCycles,
-                WriteIndented = 
-                true
+                WriteIndented = true
             };
+
+            Console.WriteLine($"Going to produce message....");
 
             string json = JsonSerializer.Serialize(message, options);
 
